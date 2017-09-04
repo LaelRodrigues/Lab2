@@ -8,6 +8,10 @@
 
 #include "data.h"
 
+#include <iomanip>
+using std::setfill;
+using std::setw;
+
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -87,17 +91,19 @@ void Data::setAno(int a) {
  * @param d Referencia para o objeto Data
  * @return Referencia para a stream de entrada
  */ 
-ifstream& operator>> (ifstream &i, Data &d) {
+istream& operator>> (istream &i, Data &d) {
 	i >> d.dia >> d.mes >> d.ano;
 	return i;
 }
 
 /** 
- * @param i Referencia para stream de saida
+ * @param o Referencia para stream de saida
  * @param d Referencia para o objeto Data
  * @return Referencia para a stream de saida
  */ 
-ofstream& operator<< (ofstream &o, Data &d) {
-	o << d.dia << "/" << d.mes << "/" << d.ano << endl;
+ostream& operator<< (ostream &o, Data &d) {
+	o << setw(2) << setfill('0') << d.dia << "/";
+	o << setw(2) << setfill('0') << d.mes << "/";
+	o << setw(2) << setfill('0') << d.ano;
 	return o;
 }

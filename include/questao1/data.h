@@ -10,9 +10,11 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include <fstream>
-using std::ifstream;
-using std::ofstream;
+#include <ostream>
+using std::ostream;
+
+#include <istream>
+using std::istream;
 
 
 /**
@@ -54,10 +56,10 @@ class  Data {
 		void setAno(int a);	
 
 		/** @brief Sobrecarga do operador de extracao de stream */
-		friend ifstream& operator>> (ifstream &i, Data &d);
+		friend istream& operator>> (istream &i, Data &d);
 
 		/** @brief Sobrecarga do operador de insercao de stream */
-		friend ofstream& operator<< (ofstream &o, Data &d);
+		friend ostream& operator<< (ostream &o, Data &d);
 };
 
 #endif
