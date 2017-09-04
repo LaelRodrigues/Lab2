@@ -18,6 +18,9 @@ using std::endl;
 
 
 Data::Data() {
+	dia = -1;
+	mes = -1;
+	ano = -1;
 	// Construtor padrao
 }
 
@@ -85,6 +88,45 @@ void Data::setAno(int a) {
 	}
 	ano = a;
 }
+
+
+/** @param d Referencia para o objeto Data
+ *	@return 
+ */
+int Data::operator-(Data &d) {
+	int tMes, tAno, tMes2, tAno2;
+	tAno = 0;
+	tAno2 = 0;
+
+	for(int i = 1; i <= ano; i++){
+		if(i % 4 == 0 && (i % 100 != 0 || i % 400 == 0)) {
+			tAno += 366;
+		}
+		else {
+			tAno += 365;
+		}
+	}
+	cout << d.ano << endl;
+	for(int i = 1; i <= d.ano; i++) {
+		if(i % 4 == 0 && (i % 100 != 0 || i % 400 == 0)) {
+			tAno2 += 366; 
+		}
+		else {
+			tAno2 += 365;
+		}
+	}
+	tMes = mes * 30;
+	tMes2 = d.getMes() * 30;
+
+	int data1 = tAno + tMes + dia;
+	int data2 = tAno2 + tMes2 + d.getDia();
+	cout << "dias: " << data1 << " " << data2 << endl;
+	int total = data2 - data1;
+	cout << "total: " << total << endl;
+
+	return total;   
+}
+
 
 /** 
  * @param i Referencia para stream de entrada

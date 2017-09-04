@@ -55,6 +55,9 @@ class  Data {
 		/** @brief Modificar o ano */
 		void setAno(int a);	
 
+		/** @brief Sobrecarga do operator de subtracao */
+		int operator-(Data &d);
+
 		/** @brief Sobrecarga do operador de extracao de stream */
 		friend istream& operator>> (istream &i, Data &d);
 
