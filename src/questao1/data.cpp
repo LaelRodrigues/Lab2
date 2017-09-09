@@ -3,7 +3,7 @@
  * @brief	Arquivo corpo com a implementacao da classe Data
  * @author	Lael Rodrigues (laelrodrigues7@gmail.com)
  * @since	03/09/2017
- * @date	03/09/2017
+ * @date	09/09/2017
  */
 
 #include "data.h"
@@ -106,7 +106,6 @@ int Data::operator-(Data &d) {
 			tAno += 365;
 		}
 	}
-	cout << d.ano << endl;
 	for(int i = 1; i <= d.ano; i++) {
 		if(i % 4 == 0 && (i % 100 != 0 || i % 400 == 0)) {
 			tAno2 += 366; 
@@ -120,10 +119,7 @@ int Data::operator-(Data &d) {
 
 	int data1 = tAno + tMes + dia;
 	int data2 = tAno2 + tMes2 + d.getDia();
-	cout << "dias: " << data1 << " " << data2 << endl;
 	int total = data2 - data1;
-	cout << "total: " << total << endl;
-
 	return total;   
 }
 
@@ -148,4 +144,8 @@ ostream& operator<< (ostream &o, Data &d) {
 	o << setw(2) << setfill('0') << d.mes << "/";
 	o << setw(2) << setfill('0') << d.ano;
 	return o;
+}
+
+Data::~Data(){
+	//Destrutor padrao
 }

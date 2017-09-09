@@ -38,8 +38,15 @@ class Funcionario {
 		Data data_admissao;	/**< Data de admissao do funcionario(formato: DD/MM/AAAA) */
 
 	public: 
+
+		/** @brief Atributo estatico */
+		static int numFuncionarios;
+
 		/** @brief Construtor padrao */
 		Funcionario();								
+
+		/** @brief Destrutor padrao */
+		~Funcionario();
 
 		/** @brief Construtor parametrizado */
 		Funcionario(string c, string n, float s, Data &data_admissao);	
@@ -69,7 +76,7 @@ class Funcionario {
 		void setData_admissao(Data &d);
 
 		/** @brief Sobrecarga do operador de comparacao */
-		bool operator==(Funcionario &f);
+		bool operator==(const Funcionario &f);
 
 		/** @brief Metodo para aumento de salario */
 		void aumentoSalario(int p);	
@@ -79,6 +86,9 @@ class Funcionario {
 
 		/** @brief Sobrecarga do operator de insercao de stream */
 		friend ostream& operator<< (ostream &o, Funcionario &f);
+
+		/** @brief Sobrecarga do operador de igualdade */
+		Funcionario& operator=(const Funcionario &f);
 
 };
 

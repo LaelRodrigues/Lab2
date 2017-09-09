@@ -4,7 +4,7 @@
  						classe Funcionario
  * @author	Lael Rodrigues (laelrodrigues7@gmail.com)
  * @since	03/09/2017
- * @date	04/09/2017
+ * @date	09/09/2017
  */ 
 
 #include "funcionario.h"
@@ -18,9 +18,12 @@ using std::endl;
 
 
 Funcionario::Funcionario(){
+	nome = " ";
 	cpf = "0";
+	salario = -1;
 	// Construtor padrao
 }
+
 
 /**
  * @param n nome
@@ -33,7 +36,6 @@ Funcionario::Funcionario(string c, string n, float s, Data &d)  {
 	setNome(n);
 	setSalario(s);
 	setData_admissao(d);
-
 }
 
 /** @return CPF */
@@ -47,15 +49,15 @@ string Funcionario::getCpf() {
  * @param c CPF
  */
 void Funcionario::setCpf(string c) {
-	if((int)c.size() < 11) {
+	if((int)c.size() != 11) {
 		cout << "Numero de CPF invalido!!" << endl;
-		cout << "Modo de uso: Digite 11 digitos." << endl;
+		cout << "Modo de uso: Digite 11 digitos(valores inteiros)." << endl;
 		return;
 	}
 	for(int i = 0; i < (int)c.size(); i++) {
 		if(c[i] < 48|| c[i] > 57) {
-			cout << "Numero de CPF invalido!!" << endl;
-			cout << "Modo de uso: Digite 11 digitos." << endl;
+			cout << "Erro: Numero de CPF invalido!!" << endl;
+			cout << "Modo de uso: Digite 11 digitos(valores inteiros)." << endl;
 			return;
 		}
 	}
@@ -89,7 +91,7 @@ float Funcionario::getSalario(){
 void Funcionario::setSalario(float s){
 
 	if(s < 0.0) {
-		cout << "Erro, valor do invalido para o salario." << endl;
+		cout << "Erro, valor invalido para o salario." << endl;
 		return;
 	}
 	salario = s;
@@ -116,8 +118,8 @@ void Funcionario::setData_admissao(Data &d) {
  * @param f Referencia para o objeto Funcionario a ser comparado
  * @return True se os objetos forem iguais e false caso contrario
  */
-bool Funcionario::operator==(Funcionario &f) {
-	if(cpf == f.getCpf()) {
+bool Funcionario::operator==(const Funcionario &f) {
+	if(cpf == f.cpf) {
 		return true;
 	}
 	else {
@@ -131,11 +133,7 @@ bool Funcionario::operator==(Funcionario &f) {
  * @param Valor da porcentagem de aumento
  */
 void Funcionario::aumentoSalario(int p){
-	if(p < 0) {
-		cout << "valor referente a porcentagem de aumento eh invalido!" << endl;
-		return; 
-	}
-	salario = salario * (1 + (p/100)); 
+	salario = salario * (1.0 + (float(p)/100.0)); 
 }
 
 /** 
@@ -144,15 +142,26 @@ void Funcionario::aumentoSalario(int p){
  * @return Referencia para a stream de entrada
  */ 
 istream& operator>> (istream &i, Funcionario &f) {
+	string cpf;
+	int s;
+	Data d;
 	cout << "Digite o nome: ";
-	i >> f.nome;  
-	cout << "Digite o cpf(apenas algorimos): ";
-	i >> f.cpf;
+	i >> f.nome;
+	cout << "Digite o cpf 11 digitos(valores inteiros): ";
+	i >> cpf;
+	f.setCpf(cpf);
+	if(f.getCpf() == "0") return i;
 	cout << "Digite o salario: ";
-	i >> f.salario;
+	i >> s;
+	f.setSalario(s);
+	if(f.getSalario() == -1) return i;
 	cout << "Digite a data de admissao(exemplo: 10 05 2015): ";
-	i >> f.data_admissao;
+	i >> d;
+	f.setData_admissao(d);
+	if(f.getData_admissao().getDia() == -1 || f.getData_admissao().getMes() == -1 || f.getData_admissao().getAno() == -1);
 	return i;
+	//numFuncionarios++;
+
 }
 
 /** 
@@ -168,4 +177,20 @@ ostream& operator<< (ostream &o, Funcionario &f) {
 	o << f.data_admissao;
 	return o;
 
+}
+
+/** 
+ * @param f Referencia para o objeto Funcionario
+ * @return Referencia para o objeto que invoca o metodo
+ */
+Funcionario& Funcionario::operator=(const Funcionario &f) {
+	nome = f.nome;
+	cpf = f.cpf;
+	salario = f.salario;
+	data_admissao = f.data_admissao;
+	return *this;
+} 
+
+Funcionario::~Funcionario() {
+	//Destrutor padrao
 }

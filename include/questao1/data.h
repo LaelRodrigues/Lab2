@@ -37,6 +37,9 @@ class  Data {
 		/** @brief Construtor parametrizado */
 		Data(int d, int m, int a);
 
+		/** @brief Destrutor padrao */
+		~Data();
+
 		/** @brief Retorna o dia */
 		int getDia();
 
