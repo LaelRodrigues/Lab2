@@ -26,9 +26,10 @@ Funcionario::Funcionario(){
 
 
 /**
+ * @param c cpf
  * @param n nome
- * @param s salario
- * @param d data de admissao
+ * @param s salarios
+ * @param d Data de admissao
  */
 
 Funcionario::Funcionario(string c, string n, float s, Data &d)  {
@@ -130,7 +131,7 @@ bool Funcionario::operator==(const Funcionario &f) {
 /**
  * @details Se o valor referente a pocentagem de aumento for invalido
  *			o programa exibe uma mensagem  de erro e encerra a execucao
- * @param Valor da porcentagem de aumento
+ * @param p Valor da porcentagem de aumento
  */
 void Funcionario::aumentoSalario(int p){
 	salario = salario * (1.0 + (float(p)/100.0)); 

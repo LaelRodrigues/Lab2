@@ -25,7 +25,7 @@ using std::istream;
 
 
 /**
- * @class   Funcionario fucionario.h
+ * @class   Funcionario funcionario.h
  * @brief   Classe que representa um funcionario
  * @details Os atributos de um funcionario sao seu rg, nome, salario e data de admissao
  */

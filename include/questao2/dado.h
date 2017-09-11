@@ -4,7 +4,7 @@
  					que representa um dados
  * @author	Lael Rodrigues (laelrodrigues7@gmail.com)
  * @since	09/09/2017
- * @date	09/09/2017
+ * @date	10/09/2017
  */
 
 #ifndef DADO_H

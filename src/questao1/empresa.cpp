@@ -30,7 +30,7 @@ Empresa::Empresa(){
 
 /**
  * @param n nome
- * @param s cnpj
+ * @param c cnpj
  * @param f funcionario
  */
 

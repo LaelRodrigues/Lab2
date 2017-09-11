@@ -62,12 +62,6 @@ class Empresa {
 		/** @brief Modifica o funcionarios da empresa */
 		void setFuncionarios(Funcionario &f);								
 
-		/** @brief Sobrecarga do operador de extracao de stream */
-		friend istream& operator>> (istream& entrada, Funcionario& f);
-
-		/** @brief Sobrecarga do operador de insercao de stream */
-		friend ostream& operator<< (ostream& entrada, Funcionario& f);
-
 };
 
 #endif
